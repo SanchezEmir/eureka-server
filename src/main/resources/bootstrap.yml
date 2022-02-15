@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: eureka-server
+  
+#CONFIG SERVER FETCH GIT
+  cloud:
+    config:
+      #enabled: true
+      uri: http://localhost:8888
+      username: nttdata
+      password: qwerty
+  
+
