@@ -1,14 +1,42 @@
+#PORT
+server:
+  port: 8761
+
+#NAME
 spring:
   application:
     name: eureka-server
   
 #CONFIG SERVER FETCH GIT
-  cloud:
-    config:
+#  cloud:
+#    config:
       #enabled: true
-      uri: http://localhost:8888
+      #discovery:
+        #enabled: true
+        #service-id: config-server
+      #failFast: true
+      #name: eureka-server
+      #uri: http://localhost:8888
       #uri: http://config-server:8888
-      username: nttdata
-      password: qwerty
+#      uri: ${REMOTE_REPOSITORY:http://localhost:8888}
+#      username: nttdata
+#      password: qwerty
+#      retry:
+#        max-attempts: 1
+#        max-interval: 1000
   
+#EUREKA NOT REGISTER
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://${eureka.instance.hostname}:${server.port}/eureka/}
+    #service-url:
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    renewal-percent-threshold: 0.85
 
